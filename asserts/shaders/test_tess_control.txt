@@ -1,0 +1,18 @@
+#version 420 core
+
+layout(vertices = 3) out;
+
+void main(void)
+{
+	//run only if it is invocation 0
+	if(gl_InvocatinID == 0)
+	{
+		gl_TessLevelInner[0] = 5.0;
+		gl_TessLevelOutter[0] = 5.0;
+		gl_TessLevelOutter[1] = 5.0;
+		gl_TessLevelOutter[2] = 5.0;	
+	}
+	
+	//everybody copy their input to their output
+	gl_out[gl_InvocationID].gl_Position = gl_in[gl_InvocationID].gl_Position;
+}
